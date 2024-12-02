@@ -17,7 +17,7 @@ def addproduct(request):
             form.save()
             return redirect('/admins/addproduct')  # we have to declare url path in redirect
         else:
-            return render(request, 'admins/addprodut.html', {'form':form})
+            return render(request, 'admins/addproduct.html', {'form':form})
     context = {
         'form':ProductForm
     }
