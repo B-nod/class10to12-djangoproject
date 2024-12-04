@@ -10,7 +10,7 @@ class Category(models.Model):
         return self.category_name
 
 class Product(models.Model):
-    product_name = models.CharField(max_length=200)
+    product_name = models.CharField(max_length=200, null=True)
     product_prie = models.IntegerField()
     description = models.TextField()
     quantity = models.IntegerField()

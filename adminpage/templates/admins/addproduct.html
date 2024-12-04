@@ -2,7 +2,22 @@
 {% load crispy_forms_tags %}
 
 {% block admin_content %}
+{% for mgs in messages%}
+<div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+  <span class="font-medium">Success alert!</span> {{mgs}}
+</div>
 
+
+{% endif %}
+
+{% if mgs.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+  <span class="font-medium">Success alert!</span> {{mgs}}
+</div>
+{% endif %}
+
+
+{% endfor %}
 
 
 <form class="max-w-sm mx-auto" method="POST">
