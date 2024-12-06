@@ -2,9 +2,17 @@ from django.shortcuts import render, redirect
 from product.models import *
 from .forms import ProductForm, CategoryForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from users.auth import admin_only
 
+@login_required
+@admin_only
+def dashboard(request):
+    return render(request, 'admins/dashboard.html')
 # Create your views here.
 # read function
+@login_required
+@admin_only
 def productlist(request):
     product = Product.objects.all()
     data = {
@@ -14,6 +22,8 @@ def productlist(request):
 
 
 #create function
+@login_required
+@admin_only
 def addproduct(request):
 
     if request.method == 'POST':
@@ -34,6 +44,8 @@ def addproduct(request):
     return render(request, 'admins/addproduct.html', context)
 
 #update function
+@login_required
+@admin_only
 def updateproduct(request, product_id):
     product = Product.objects.get(id=product_id)
     if request.method == "POST":
@@ -54,6 +66,8 @@ def updateproduct(request, product_id):
     return render(request, 'admins/updateproduct.html', context)
 
 #deletefunction
+@login_required
+@admin_only
 def deleteproduct(request, product_id):
     product = Product.objects.get(id=product_id)
     product.delete()

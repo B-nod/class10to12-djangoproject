@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block main_content %}
+
+<div class="bg-gray-50 font-[sans-serif]">
+    <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4">
+      <div class="max-w-md w-full">
+        <a href="javascript:void(0)"><img
+          src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-40 mb-8 mx-auto block' />
+        </a>
+
+        <div class="p-8 rounded-2xl bg-white shadow">
+          <h2 class="text-gray-800 text-center text-2xl font-bold">Sign up</h2>
+          {% for mgs in messages%}
+
+
+{% if mgs.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+  <span class="font-medium">Success alert!</span> {{mgs}}
+</div>
+{% endif %}
+
+
+{% endfor %}
+        
+          <form class="mt-8 space-y-4" method="POST">
+
+              {% csrf_token %}
+              {{ form | crispy }}
+
+
+            <div class="!mt-8">
+              <button type="submit" class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                Register
+              </button>
+            </div>
+            <p class="text-gray-800 text-sm !mt-8 text-center">If you have an account? <a href="{% url 'login' %}" class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Go to login page here</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
